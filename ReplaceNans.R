@@ -1,7 +1,7 @@
 #' Title
 #'
-#' @param df 
-#' @param colName 
+#' @param df
+#' @param colName
 #'
 #' @return
 #' @export
@@ -15,9 +15,9 @@ replaceNansWithMedian <- function(df, colName) {
 
 #' Title
 #'
-#' @param data 
-#' @param predictstatement 
-#' @param filename 
+#' @param data
+#' @param predictstatement
+#' @param filename
 #'
 #' @return
 #' @export
@@ -30,14 +30,14 @@ writeCSV <- function(data, predictstatement, filename) {
 
 
 prepData <- function(df, test = FALSE) {
-  
+
   if (test == TRUE) {
     df <- dplyr::select(df, SK_ID_CURR, OWN_CAR_AGE, DAYS_ID_PUBLISH, AMT_ANNUITY, DAYS_BIRTH, EXT_SOURCE_3, EXT_SOURCE_1, EXT_SOURCE_2, EXT_SOURCE_1, DAYS_BIRTH, AMT_INCOME_TOTAL, DAYS_LAST_PHONE_CHANGE, CODE_GENDER, AMT_CREDIT, AMT_GOODS_PRICE)
   }
   else {
     df <- dplyr::select(df, TARGET, OWN_CAR_AGE, DAYS_ID_PUBLISH, AMT_ANNUITY, DAYS_BIRTH, EXT_SOURCE_3, EXT_SOURCE_1, EXT_SOURCE_2, EXT_SOURCE_1, DAYS_BIRTH, AMT_INCOME_TOTAL, DAYS_LAST_PHONE_CHANGE, CODE_GENDER, AMT_CREDIT, AMT_GOODS_PRICE)
   }
-  
+
   df <- replaceNansWithMedian(df, "OWN_CAR_AGE")
   df <- replaceNansWithMedian(df, "DAYS_ID_PUBLISH")
   df <- replaceNansWithMedian(df, "AMT_ANNUITY")
@@ -49,6 +49,6 @@ prepData <- function(df, test = FALSE) {
   df <- replaceNansWithMedian(df, "DAYS_LAST_PHONE_CHANGE")
   df <- replaceNansWithMedian(df, "AMT_GOODS_PRICE")
   df <- replaceNansWithMedian(df, "AMT_CREDIT")
-  
+
   return(df)
 }
